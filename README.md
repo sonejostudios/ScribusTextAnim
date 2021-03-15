@@ -17,3 +17,6 @@ This script generates a "growing text" animation, by adding one character to eac
 
 ## Preview
 Have a look at the "sample.mp4" file.
+
+## Examples
+Open Example.sla or Example2.sla with Scribus and run the TextAnim.
