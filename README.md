@@ -3,7 +3,7 @@ Use Scribus to generate text animation.
 
 This script generates a "growing text" animation, by adding one character to each animation frame.
 
-![screenshot](https://raw.githubusercontent.com/sonejostudios/ScribusTextAnim/master/scribustextanim.png "Scribus TextAnim")
+![screenshot](https://raw.githubusercontent.com/sonejostudios/ScribusTextAnim/master/samples.gif "Scribus TextAnim")
 
 ## Best usage
 1. Open Scribus, create a new document, set the unit to Points (pt) and the dimentions to your video dimention, e.g. 1920x1080 (FullHD)
@@ -16,7 +16,7 @@ This script generates a "growing text" animation, by adding one character to eac
 8. Once done, you'll find the whole image sequence in the previously selected folder. Import all these images to a video editing app (e.g. Kdenlive) and enjoy!
 
 ## Preview
-Have a look at the "sample.mp4" file.
+Have a look at the "samples.mp4" file.
 
 ## Examples
-Open Example.sla or Example2.sla with Scribus and run the TextAnim.
+Open Example.sla or Example2.sla with Scribus and run TextAnim.
