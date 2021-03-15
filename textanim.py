@@ -19,35 +19,42 @@ except ImportError,err:
 
 
 def main(argv):
-    unit = scribus.getUnit()
-    units = ['pts','mm','inches','picas','cm','ciceros']
-    unitlabel = units[unit]
-    pagesize = scribus.getPageSize()
 
-
-
-    # get selected object
+    # check if "textanim" object exists, if not check selection
     global text_selection
-    text_selection = scribus.getSelectedObject(0)
 
-    # cancel if selected object is not a text frame
-    if text_selection == "":
-        scribus.messageBox("Text frame needed", "Please select a text frame first.")
-        sys.exit()
+    if scribus.objectExists("textanim"):
+        text_selection = "textanim"
+
     else:
-        selection_type = scribus.getObjectType(text_selection)
-        if selection_type != "TextFrame":
-            scribus.messageBox("Text frame needed", "This is not a text frame, please select a text frame first.")
+        # get selected object
+        text_selection = scribus.getSelectedObject(0)
+
+        # cancel if no object is selected or if it is not a text frame
+        if text_selection == "":
+            scribus.messageBox("Text frame needed", "Please select a text frame first.\nIf a text frame named 'textanim' exists, it will automatically be used.")
             sys.exit()
+        else:
+            selection_type = scribus.getObjectType(text_selection)
+            if selection_type != "TextFrame":
+                scribus.messageBox("Text frame needed", "This is not a text frame, please select a text frame first.")
+                sys.exit()
 
 
 
     global export_dir
-    #export_dir = '/home/vince/AAA/'
     export_dir = scribus.fileDialog("Select export directory", "", haspreview=False, issave=False, isdir=True)
     if export_dir == "":
         sys.exit()
 
+
+    # ask to proceed
+    ready = scribus.valueDialog("Scribus TextAnim", "This will export one image for each character.\n"
+                                                    "This will produce a lot of files and therefore take a lot of time!\n\n"
+                                                    "Do you want to proceed?", "yes")
+    # exit if cancelled or not yes
+    if ready != "yes":
+        sys.exit()
 
 
     # set linespacing mode to "Fixed Linespacing"
@@ -60,6 +67,11 @@ def main(argv):
     mytext_font = scribus.getFont(text_selection)
     mytext_font_size = scribus.getFontSize(text_selection)
     mytext_linespacing = scribus.getLineSpacing(text_selection)
+
+
+
+    # encode text to unicode
+    mytext = unicode(mytext)
 
     # get text length
     text_length = len(mytext)
@@ -109,7 +121,6 @@ def renew_text(newtext, mytext_color, mytext_font, mytext_font_size, mytext_line
 
 
 
-
 def export_image(number):
     i = scribus.ImageExport()
     i.type = 'PNG'
@@ -117,7 +128,17 @@ def export_image(number):
     i.quality = 100
     i.dpi = 72
     i.transparentBkgnd = True
-    i.name = export_dir + "/" + str(number) + ".png"
+
+    if len(str(number)) == 1:
+        filename = "000" + str(number)
+    if len(str(number)) == 2:
+        filename = "00" + str(number)
+    if len(str(number)) == 3:
+        filename = "0" + str(number)
+    if len(str(number)) == 4:
+        filename = str(number)
+
+    i.name = export_dir + "/" + filename + ".png"
     i.save()
         
 
