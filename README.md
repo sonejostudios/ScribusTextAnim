@@ -6,7 +6,7 @@ This script generates a "growing text" animation, by adding one character to eac
 ![screenshot](https://raw.githubusercontent.com/sonejostudios/ScribusTextAnim/master/scribustextanim.png "Scribus TextAnim")
 
 ## Best usage
-1. Create a new document, set the unit to Points (pt) and the dimentions to your video dimention, e.g. 1920x1080 (FullHD)
+1. Open Scribus, create a new document, set the unit to Points (pt) and the dimentions to your video dimention, e.g. 1920x1080 (FullHD)
 2. Add a text frame with your text.
 3. Make sure the text is aligned left, set of "Fixed Linespacing", and has only one color.
 4. Add a BLANK LINE at the beginning of the text (this is really important because otherwise scribus will set the text to the highest character and this will cause weird movements).
