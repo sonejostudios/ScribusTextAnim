@@ -1,7 +1,7 @@
 # ScribusTextAnim
 Use Scribus to generate text animation.
 
-This script generates a "growing text" animation, by adding one character to each animation frame.
+This script generates a "typewriter" animation, by adding one character to each animation frame.
 
 ![screenshot](https://raw.githubusercontent.com/sonejostudios/ScribusTextAnim/master/samples.gif "Scribus TextAnim")
 
